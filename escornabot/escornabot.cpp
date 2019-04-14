@@ -1,5 +1,6 @@
 /*
 Librería escornabot por Prudencio Luna y Pedro Ruiz
+V 0.14 (14/04/2019): cuarta versión del programa, cambiado nombre de procedimiento stop por Stop, se arregla procedimineto versión en .h, cambios en procedimiento pushButton, cambios en archivo de ejemplo.
 V 0.13 (07/03/2018): tercera versión del programa, incorpora control de motores paso a paso (avances, retrocesos, giros, parada)
 , elección del tipo de excitación de bobinas, control de leds, zumbador, botonera y bluetooth.
 */
@@ -157,7 +158,7 @@ void escornabot::driveD (float distance, int speed) {//distancia es el nº de cm
 stop procedimiento de paro de los motores
  */
 
-void escornabot::stop () {
+void escornabot::Stop () {
 
 	for (int i=0; i<8; i++) {
 	digitalWrite (pinMotor[i],LOW);
@@ -241,62 +242,64 @@ int  escornabot::ledState(int ledNumber){
 /*
  * buzzON procedimiento para encender zumbador
  * */
-void escornabot::buzzON(void){
+void escornabot::buzzON(){
   digitalWrite(buzz,HIGH);
 }//buzzON
 
 /*
  * buzzOFF procedimiento para apagar zumbador
  * */
-void escornabot::buzzOFF(void){
+void escornabot::buzzOFF(){
   digitalWrite(buzz,LOW);
 }//buzOFF
 
 /*
  * pushButton procedimiento para determinar el pulsador pulsado
  * */
-int escornabot::pushButton(void){
-  if(analogRead(pushButtons)>= 748 && analogRead(pushButtons)<=788) {//atras
-	delay (50);    
-	return 3;
+int escornabot::pushButton(){
+  int value=0;
+  if(analogRead(pushButtons)>=748 && analogRead(pushButtons)<=788) {//atras
+	value=3;
+	delay(200);		
   }
-  if(analogRead(pushButtons)>= 492 && analogRead(pushButtons)<=532) {//adelante
-	delay (50);        
-	return 1;
+  else if(analogRead(pushButtons)>=492 && analogRead(pushButtons)<=532) {//adelante
+	value=1;
+	delay(200);		
   }
-  if(analogRead(pushButtons)>= 862 && analogRead(pushButtons)<=902) {//derecha
-   delay (50);     
-   return 4;
+  else if(analogRead(pushButtons)>=862 && analogRead(pushButtons)<=902) {//derecha
+	value=4;
+	delay(200);		       
   }
-  if(analogRead(pushButtons)>= 663 && analogRead(pushButtons)<=703) {//izquierda
-	delay (50);       
-	return 2;
+  else if(analogRead(pushButtons)>=663 && analogRead(pushButtons)<=703) {//izquierda
+	value=2;
+	delay(200);		
   }
-  if(analogRead(pushButtons)>= 799 && analogRead(pushButtons)<=839) {//centro
-	delay (50);    
-    return 5;
+  else if(analogRead(pushButtons)>=799 && analogRead(pushButtons)<=839) {//centro
+	value=5;
+	delay(200);		
   }
   else {
-    return 0;
+    	value=0;
   }
+
+  return value;
 }//pushButton
 
 /*
  * blueT procedimiento para saber el caracter que me han mandado por Bluetooth
  * */
-int escornabot::blueT(void){
-if (Serial.available()>0) {
+int escornabot::blueT(){
+	if (Serial.available()>0) {
 	    int dato=Serial.read();
 		return dato;
 	}
-else return 0;
-
+	else return 0;
 }//blueT
 
 /*
   version() procedimiento que devuelve la versión de la librería
 */
-int escornabot::version(void){
-  return 0.13;
+float escornabot::version(){
+  return 0.14;
 }
 
