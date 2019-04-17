@@ -3,9 +3,11 @@
 
 # Aportaciones
 *Jose Antonio Vacas*
+*Maribel Ruiz Martínez*
 
 # Control de Versiones
-- 0.14 (14/04/2019):cambio de nombre de procedimiento stop por Stop, se arregla procedimineto versión en .h, cambios en procedimiento pushButton, cambios en archivo de ejemplo. Limpieza de código.
+V 0.15 (16/04/2019): quinta versión, se puede mover los motores mediante procedimiento de medio paso (tipo 3) y se corrigen fallos en constructor con parámetros para elegir modos de paso.
+- 0.14 (14/04/2019):cambio de nombre de procedimiento stop por Stop, se arregla procedimiento versión en .h, cambios en procedimiento pushButton, cambios en archivo de ejemplo. Limpieza de código.
 - 0.13 (08/03/2017): se añade funciones driveD (mueve por distancia en cm) y turnA (gira por ángulos).
 - 0.12 (28/02/2017): se cambia sentido de marcha, se facilita pasar parámetros con diccionario, se añade función ledState y traducciones varias. Se adecua archivo de ejemplo.   
 - 0.11 (19/11/2017): se añade procedimiento blueT(), para conocer el dato recibido por bluetooth.
@@ -36,7 +38,10 @@ La librería debemos cargar en arduino por los métodos tradicionales, incluyend
 ~~~
 #include <escornabot.h>
 
-escornabot mirobot;
+escornabot mirobot;//por defecto funciona a modo paso completo con activación de una sóla bobina en cada paso (menor consumo y menor par)
+// si ponemos mirobot(2), se activa el modo paso completo con activación de dos bobinas a la vez en cada paso (mayor consumo y mayor par)
+// si ponemos mirobot(3), se activa el modo medio paso (consumo y par intermedio con los casos anteriores y movimiento más suave)
+
 boolean led1 = false;
 boolean led2 = false;
 boolean led3 = false;
@@ -92,7 +97,7 @@ void loop() {
       break;
 
     default://otro caso, si no pulsamos nada, no se mueve el robot
-      mirobot.driveD(0,0);
+      mirobot.Stop();
       break;
 
   }

@@ -1,6 +1,9 @@
 #include <escornabot.h>
 
-escornabot mirobot;
+escornabot mirobot;//por defecto funciona a modo paso completo con activación de una sóla bobina en cada paso (menor consumo y menor par)
+// si ponemos mirobot(2), se activa el modo paso completo con activación de dos bobinas a la vez en cada paso (mayor consumo y mayor par)
+// si ponemos mirobot(3), se activa el modo medio paso (consumo y par intermedio con los casos anteriores y movimiento más suave)
+
 boolean led1 = false;
 boolean led2 = false;
 boolean led3 = false;
@@ -55,8 +58,8 @@ void loop() {
       }
       break;
 
-    default://otro caso, si no pulsamos nada, no se mueve el robot 
-      mirobot.driveD(0,0);
+    default://otro caso, si no pulsamos nada, no se mueve el robot
+      mirobot.Stop();
       break;
 
   }
