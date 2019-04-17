@@ -104,7 +104,7 @@ escornabot::escornabot(int kindStep) //aquí se construye el objeto escornabot c
 		{0, 0, 1, 1},
 		{0, 0, 0, 1},
 		{1, 0, 0, 1}*/
-		step[1][0]=1;step[2][1]=1;step[2][2]=0;//se cambian los 0 por 1 y los 1 por 0 en la matriz para el paso completo con una bobina por paso
+		step[1][0]=1;step[2][1]=1;step[2][2]=0;//se cambian los 0 por 1 y los 1 por 0 en la matriz para el medio paso
 		step[3][1]=1;step[3][2]=1;step[3][3]=0;
 		step[4][2]=1;step[5][2]=1;step[5][3]=1;
 		step[6][3]=1;step[7][0]=1;step[7][3]=1;		
